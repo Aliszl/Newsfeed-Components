@@ -100,6 +100,7 @@ const data = [
   </div>
 
   Hint: You will need to use createElement more than once here!
+  
 
   Your function should take either an object as it's one argument, or 5 separate arguments mapping to each piece of the data object above.
 
@@ -112,3 +113,71 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 
 */
+function ButtonCreator(buttonText){
+const button = document.createElement('button');
+
+button.textContent = buttonText;
+
+button.classList.add('button');
+
+button.addEventListener('click', (e) => {
+    console.log('clicked!');
+});
+
+return button;
+}
+
+
+function articleCreator(title,date,para1,para2,para3,button){
+  // 1- Create HTML markup
+  const article = document.createElement('div');
+  const articleTitle = document.createElement('h2');
+  const articleParagraph1 = document.createElement('p');
+  const articleParagraph2 = document.createElement('p');
+  const articleParagraph3 = document.createElement('p');
+  const articleButton = document.createElement('span');
+  
+   // 2- Define HTML structure
+  article.append(articleTitle);
+  article.append(articleParagraph1);
+  article.append(articleParagraph2);
+  article.append(articleParagraph3);
+  article.append(articleButton);
+
+   // 3- Add some class names
+   article.classList.add('article');
+   articleParagraph1.classList.add('date');
+   articleButton.classList.add('expandButton');
+
+   // 4- Add some content!
+   data.
+  // expandButton.textContent = '\u25BC';
+   
+  return article;
+}
+console.log(articleCreator);
+// console.log(article);
+
+const articles = document.querySelector('.articles');
+
+data.forEach(article => {
+  console.log('Creating article...', article.articleTitle);
+  articles.append(articleCreator(
+    article.articleTitle, 
+    article.articleParagraph1,
+    article.articleParagraph2,
+    article.articleParagraph3,
+    article.articleButton
+  ));
+});
+
+console.log(articles);
+  // <div class="article">
+  //   <h2>{title of the article}</h2>
+  //   <p class="date">{date of the article}</p>
+
+  //   {three separate paragraph elements}
+
+  //   <span class='expandButton'></span>
+  // </div>
+   
