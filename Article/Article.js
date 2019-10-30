@@ -1,7 +1,6 @@
 /* This is the data we will be using to create our article components */
 /* Look over this data, then proceed to line 91*/
-const data = [
-  {
+const data = [{
     title: 'Lambda School Students: "We\'re the best!"',
     date: 'Nov 5th, 2018',
     firstParagraph: `Lucas ipsum dolor sit amet ben twi'lek padmé darth darth darth moff hutt organa twi'lek. Ben amidala secura skywalker lando
@@ -113,71 +112,98 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 
 */
-function ButtonCreator(buttonText){
-const button = document.createElement('button');
 
-button.textContent = buttonText;
-
-button.classList.add('button');
-
-button.addEventListener('click', (e) => {
-    console.log('clicked!');
-});
-
-return button;
-}
+const buttonX = document.querySelector('.expandButton');
 
 
-function articleCreator(title,date,para1,para2,para3,button){
+function articleCreator(title, para1, para2, para3, date) {
   // 1- Create HTML markup
   const article = document.createElement('div');
   const articleTitle = document.createElement('h2');
+  const articleDate = document.createElement('p');
   const articleParagraph1 = document.createElement('p');
   const articleParagraph2 = document.createElement('p');
   const articleParagraph3 = document.createElement('p');
   const articleButton = document.createElement('span');
-  
-   // 2- Define HTML structure
+
+  // 2- Define HTML structure
   article.append(articleTitle);
+  article.append(articleDate);
   article.append(articleParagraph1);
   article.append(articleParagraph2);
   article.append(articleParagraph3);
   article.append(articleButton);
 
-   // 3- Add some class names
-   article.classList.add('article');
-   articleParagraph1.classList.add('date');
-   articleButton.classList.add('expandButton');
+  // 3- Add some class names
+  article.classList.add('article');
+  articleParagraph1.classList.add('date');
+  articleButton.classList.add('expandButton');
 
-   // 4- Add some content!
-   data.
+  // 4- Add some content!
+  articleTitle.textContent = title;
+  articleDate.textContent = date;
+  articleParagraph1.textContent = para1;
+  articleParagraph2.textContent = para2;
+  articleParagraph3.textContent = para3;
+  articleButton.textContent = 'Expand';
+  //  data.
   // expandButton.textContent = '\u25BC';
-   
+
+  articleButton.addEventListener('click', ()=>{
+    article.classList.toggle('article-open');
+    if(articleButton.textContent=='Expand'){
+      articleButton.textContent='Collapse'
+    }else{
+      articleButton.textContent = 'Expand'
+    }
+
+  });
+
   return article;
 }
 console.log(articleCreator);
 // console.log(article);
 
 const articles = document.querySelector('.articles');
+// console.log(articles.append(articleCreator(article.articleTitle)));
 
 data.forEach(article => {
   console.log('Creating article...', article.articleTitle);
   articles.append(articleCreator(
-    article.articleTitle, 
-    article.articleParagraph1,
-    article.articleParagraph2,
-    article.articleParagraph3,
-    article.articleButton
+    article.title,
+    article.firstParagraph,
+    article.secondParagraph,
+    article.thirdParagraph,
+    article.date
   ));
 });
+// write an event listener listening for toggle. on toggle add a classlist 
+
+// function ButtonCreator(buttonText) {
+//   const button = document.createElement('button');
+//   const buttonOpen = document.createElement('button');
+//   const buttonClose = document.createElement('button')
+
+//   button.textContent = buttonText;
+
+//   button.classList.add('button');
+//   button.classList.toggle('hide-btn');
+//   buttonOpen.classList.add('panel-btn-open');
+//   buttonClose.classList.add('panel-btn-close', 'hide-btn');
+
+//   button.addEventListener('click', (e) => {
+//     console.log('clicked!');
+//   });
+
+//   return button;
+// }
 
 console.log(articles);
-  // <div class="article">
-  //   <h2>{title of the article}</h2>
-  //   <p class="date">{date of the article}</p>
+// <div class="article">
+//   <h2>{title of the article}</h2>
+//   <p class="date">{date of the article}</p>
 
-  //   {three separate paragraph elements}
+//   {three separate paragraph elements}
 
-  //   <span class='expandButton'></span>
-  // </div>
-   
+//   <span class='expandButton'></span>
+// </div>
